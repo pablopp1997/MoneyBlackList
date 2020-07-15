@@ -21,10 +21,11 @@
         tools:srcCompat="?attr/actionModeCutDrawable" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/personName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Person"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

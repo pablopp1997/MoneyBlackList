@@ -13,14 +13,30 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moneyblacklist.Adapters.PersonRecycleAdapter
+import com.example.moneyblacklist.Services.DataService
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    lateinit var adapter : PersonRecycleAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        adapter = PersonRecycleAdapter(this, DataService.persons)
+        personListView.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(this)
+        personListView.layoutManager = layoutManager
+        personListView.setHasFixedSize(true)
+
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
