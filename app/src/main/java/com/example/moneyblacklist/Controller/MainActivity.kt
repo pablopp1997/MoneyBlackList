@@ -28,14 +28,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        //Adapter ficha Person
-//        adapter = PersonRecycleAdapter(this, DataService.persons)
-//        personListView.adapter = adapter
-//
-//        //Manager Layout
-//        val layoutManager = LinearLayoutManager(this)
-//        personListView.layoutManager = layoutManager
-//        personListView.setHasFixedSize(true)
+        //Adapter ficha Person
+        adapter = PersonRecycleAdapter(this, DataService.persons)
+        personListView.adapter = adapter
+
+        //Manager Layout
+        val layoutManager = LinearLayoutManager(this)
+        personListView.layoutManager = layoutManager
+        personListView.setHasFixedSize(true)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
     }
 
-    
+
 
     fun createUserBtnClicked(view: View){
         val createPersonIntent = Intent(this, CreatePersonActivity::class.java)
