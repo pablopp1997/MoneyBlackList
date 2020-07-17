@@ -12,10 +12,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneyblacklist.Adapters.PersonRecycleAdapter
 import com.example.moneyblacklist.R
 import com.example.moneyblacklist.Services.DataService
+import com.example.moneyblacklist.Utilities.EXTRA_PERSON
+import kotlinx.android.synthetic.main.activity_debts.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,21 +32,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //Adapter ficha Person
-        adapter = PersonRecycleAdapter(this, DataService.persons)
+//        adapter = PersonRecycleAdapter(this, DataService.persons)
+        adapter = PersonRecycleAdapter(this, DataService.persons) {person ->
+//            println(person.name)
+            val debtIntent = Intent(this, DebtsActivity::class.java)
+            debtIntent.putExtra(EXTRA_PERSON, person.name)
+            startActivity(debtIntent)
+        }
         personListView.adapter = adapter
 
         //Manager Layout
-        val layoutManager = LinearLayoutManager(this)
+//        val layoutManager = LinearLayoutManager(this)
+//        personListView.layoutManager = layoutManager
+//        personListView.setHasFixedSize(true)
+
+        val layoutManager = GridLayoutManager(this, 2)
         personListView.layoutManager = layoutManager
-        personListView.setHasFixedSize(true)
+
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
 
             //AQUI NOS LLEVARIA A LA PANTALLA DE AÑADIR UN NUEVO DEUDOR (PERSONA)
             val createPersonIntent = Intent(this, CreatePersonActivity::class.java)

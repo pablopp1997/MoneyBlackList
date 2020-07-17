@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moneyblacklist.Model.Person
 import com.example.moneyblacklist.R
 
-class PersonRecycleAdapter(val context: Context, val persons: List<Person>) : RecyclerView.Adapter<PersonRecycleAdapter.Holder>() {
+class PersonRecycleAdapter(val context: Context, val persons: List<Person>, val itemClick: (Person) -> Unit) : RecyclerView.Adapter<PersonRecycleAdapter.Holder>() {
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class Holder(itemView: View, val itemClick: (Person) -> Unit) : RecyclerView.ViewHolder(itemView) {
         val personImage = itemView?.findViewById<ImageView>(R.id.personImage)
         val personName = itemView?.findViewById<TextView>(R.id.personName)
 
@@ -22,6 +22,7 @@ class PersonRecycleAdapter(val context: Context, val persons: List<Person>) : Re
             personImage?.setImageResource(resourceId)
             personName?.text = person.name
             personName?.setTextColor(Color.WHITE)
+            itemView.setOnClickListener { itemClick(person) }
         }
 
     }
@@ -29,7 +30,7 @@ class PersonRecycleAdapter(val context: Context, val persons: List<Person>) : Re
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.person_list_item, parent, false)
-        return Holder(view)
+        return Holder(view, itemClick)
     }
 
     override fun getItemCount(): Int {
