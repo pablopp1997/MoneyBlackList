@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         //Adapter ficha Person
 //        adapter = PersonRecycleAdapter(this, DataService.persons)
         adapter = PersonRecycleAdapter(this, DataService.persons) {person ->
-//            println(person.name)
+           println(person.name)
             val debtIntent = Intent(this, DebtsActivity::class.java)
             debtIntent.putExtra(EXTRA_PERSON, person.name)
             startActivity(debtIntent)
